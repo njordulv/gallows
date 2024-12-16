@@ -6,6 +6,7 @@ import { Canvas } from './Canvas'
 
 function App() {
   const random = getRandom(siteConfig.words)
+  const attempts = 7
   const [randomWord, setRandomWord] = useState(random)
   const hiddenWord = genHiddenWord(randomWord)
   const [word, setWord] = useState(hiddenWord)
@@ -19,7 +20,7 @@ function App() {
 
     const { updatedWord, guess } = updateWord(randomWord, word, letter)
 
-    if (!guess) setCount((count) => count + 1)
+    if (!guess && count < attempts) setCount((count) => count + 1)
 
     setWord(updatedWord)
   }
@@ -35,14 +36,22 @@ function App() {
   return (
     <div className="wrapper">
       <Canvas count={count} />
-      <h1>{count < 7 ? word : randomWord}</h1>
-      <button
-        className="btn refresh-btn"
-        type="button"
-        onClick={() => restart()}
-      >
-        <IoRefresh size="23" />
-      </button>
+      <h1>{count < attempts ? word : randomWord}</h1>
+      <div className="desk">
+        <button
+          className="btn refresh-btn"
+          type="button"
+          title="Reset"
+          onClick={() => restart()}
+        >
+          <IoRefresh size="23" />
+        </button>
+        <div className="attempts">
+          <span>{count}</span>
+          <span>/</span>
+          <span>{attempts}</span>
+        </div>
+      </div>
       <div className="buttons">
         {siteConfig.alphabet.map((letter, index) => (
           <button

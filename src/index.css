@@ -5,7 +5,6 @@
   font-style: normal;
   line-height: 1.5;
   color: #1a1a1a;
-  background-color: #363636;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,9 +23,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: #363636 url(bg.jpg) center center no-repeat;
+  background: url(bg.jpg) 0 0 no-repeat;
+  background-color: gainsboro;
   background-size: cover;
-  background-blend-mode: screen;
+  background-blend-mode: overlay;
 }
 
 a {
@@ -68,7 +68,7 @@ button {
   align-items: center;
   justify-content: center;
   font-family: inherit;
-  background-color: #262626;
+  background-color: #333;
   color: whitesmoke;
   text-transform: uppercase;
   cursor: pointer;
@@ -82,8 +82,8 @@ button:focus-visible {
   outline: none;
 }
 button:disabled {
-  opacity: 0.6;
-  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.65;
+  color: rgba(255, 255, 255, 0.7);
   pointer-events: none;
 }
 
@@ -104,10 +104,22 @@ button:disabled {
   gap: 0.8em;
 }
 
-.refresh-btn {
+.desk {
   position: absolute;
   right: 20px;
   top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+
+.attempts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
 }
 
 .canvas {
