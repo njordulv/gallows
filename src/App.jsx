@@ -5,7 +5,7 @@ import { siteConfig } from './config'
 import { Canvas } from './Canvas'
 
 function App() {
-  const random = getRandom(siteConfig.words)
+  const random = getRandom(siteConfig.categories.animals)
   const attempts = 7
   const [randomWord, setRandomWord] = useState(random)
   const hiddenWord = genHiddenWord(randomWord)
@@ -26,7 +26,7 @@ function App() {
   }
 
   const restart = () => {
-    const newWord = getRandom(siteConfig.words)
+    const newWord = getRandom(siteConfig.categories.animals)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
     setCount(0)

@@ -27,7 +27,7 @@ export const siteConfig = {
     'yogurt',
     'zephyr',
   ],
-  categiries: {
+  categories: {
     animals: [
       'Elephant',
       'Tiger',
