@@ -13,8 +13,10 @@ Built with React & Vite.
 
 ## Technologies
 
-- Frontend library: React ^18
-- Languages: JavaScript
+- **Frontend library:** React ^18
+- **Languages:** JavaScript
+- **Animation library:** Motion
+- **Build tool:** Vite
 
 ## Installation
 
@@ -30,7 +32,7 @@ Follow these steps to set up and run the project locally:
 
 3. Run the Application
    Start the development server:
-   npm start
+   npm run dev
 
 4. Build for Production
    To create an optimized build for deployment:

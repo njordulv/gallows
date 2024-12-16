@@ -1,20 +1,16 @@
 import { motion } from 'motion/react'
 
 // eslint-disable-next-line react/prop-types
-export const Canvas = ({ count }) => {
-  const color = '#1a1a1a'
-
+export const Canvas = ({ count, color = '#1a1a1a' }) => {
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
-    visible: () => {
-      return {
-        pathLength: 1.1,
-        opacity: 1,
-        transition: {
-          pathLength: { type: 'spring', duration: 1.1 },
-          opacity: { duration: 0.02 },
-        },
-      }
+    visible: {
+      pathLength: 1.1,
+      opacity: 1,
+      transition: {
+        pathLength: { type: 'spring', duration: 1.1 },
+        opacity: { duration: 0.02 },
+      },
     },
   }
 
