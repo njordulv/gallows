@@ -37,7 +37,7 @@ function App() {
     <div className="wrapper">
       <Canvas count={count} />
       <h1>{count < attempts ? word : randomWord}</h1>
-      <div className="desk">
+      <div className="userboard">
         <button
           className="btn refresh-btn"
           type="button"

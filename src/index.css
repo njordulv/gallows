@@ -4,7 +4,7 @@
   font-weight: 500;
   font-style: normal;
   line-height: 1.5;
-  color: #1a1a1a;
+  color: #363636;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,7 +24,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: url(bg.jpg) 0 0 no-repeat;
-  background-color: gainsboro;
+  background-color: darkgrey;
   background-size: cover;
   background-blend-mode: overlay;
 }
@@ -68,14 +68,13 @@ button {
   align-items: center;
   justify-content: center;
   font-family: inherit;
-  background-color: #333;
+  background-color: #363636;
   color: whitesmoke;
-  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 button:hover {
-  background-color: #000;
+  background-color: black;
 }
 button:focus,
 button:focus-visible {
@@ -96,7 +95,7 @@ button:disabled {
 }
 
 .buttons {
-  max-width: 600px;
+  max-width: 500px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -104,7 +103,7 @@ button:disabled {
   gap: 0.8em;
 }
 
-.desk {
+.userboard {
   position: absolute;
   right: 20px;
   top: 20px;
