@@ -3,7 +3,6 @@ import { IoRefresh } from 'react-icons/io5'
 import { getRandom, genHiddenWord, updateWord } from './utils'
 import { siteConfig } from './config'
 import { Canvas } from './Canvas'
-import './App.css'
 
 function App() {
   const random = getRandom(siteConfig.words)

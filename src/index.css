@@ -4,9 +4,7 @@
   font-weight: 500;
   font-style: normal;
   line-height: 1.5;
-  font-weight: 400;
   color: #1a1a1a;
-  color-scheme: light dark;
   background-color: #363636;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,8 +12,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+}
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #363636 url(bg.jpg) center center no-repeat;
+  background-size: cover;
+  background-blend-mode: screen;
+}
+
 a {
-  font-weight: 500;
   color: rebeccapurple;
   text-decoration: inherit;
 }
@@ -23,15 +37,12 @@ a:hover {
   color: plum;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background: #242424 url(bg.jpg) center center no-repeat;
-  background-size: cover;
-  background-blend-mode: screen;
+circle,
+rect,
+line {
+  stroke-width: 5px;
+  stroke-linecap: round;
+  fill: transparent;
 }
 
 h1 {
@@ -56,9 +67,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
   font-family: inherit;
   background-color: #262626;
+  color: whitesmoke;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -76,9 +87,45 @@ button:disabled {
   pointer-events: none;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.buttons {
+  max-width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+}
+
+.refresh-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.canvas {
+  width: 288px;
+  height: 400px;
+  position: relative;
+}
+
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 2.4em;
     letter-spacing: 0.1em;
+  }
+
+  .wrapper {
+    gap: 2em;
+  }
+  .buttons {
+    gap: 0.6em;
   }
 }
