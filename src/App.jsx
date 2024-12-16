@@ -1,34 +1,25 @@
 import { useState } from 'react'
 import { IoRefresh } from 'react-icons/io5'
-import { getRandom } from './utils/functions'
-import { siteConfig } from './config/site'
+import { getRandom, genHiddenWord, updateWord } from './utils'
+import { siteConfig } from './config'
 import './App.css'
 
 function App() {
-  const [randomWord, setRandomWord] = useState(getRandom(siteConfig.words))
-  const [word, setWord] = useState(randomWord.split('').map(() => '_'))
+  const random = getRandom(siteConfig.words)
+  const [randomWord, setRandomWord] = useState(random)
+  const hiddenWord = genHiddenWord(randomWord)
+  const [word, setWord] = useState(hiddenWord)
   const [usedLetters, setUsedLetters] = useState([])
   const [count, setCount] = useState(0)
-
-  const updateCount = () => setCount((count) => count + 1)
 
   const getLetter = (letter) => {
     if (usedLetters.includes(letter)) return
 
     setUsedLetters((prev) => [...prev, letter])
 
-    let guess = false
+    const { updatedWord, guess } = updateWord(randomWord, word, letter)
 
-    const updatedWord = word.map((el, index) => {
-      if (randomWord[index] === letter) {
-        guess = true
-        return letter
-      } else {
-        return el
-      }
-    })
-
-    !guess && updateCount()
+    if (!guess) setCount((count) => count + 1)
 
     setWord(updatedWord)
   }
@@ -36,7 +27,7 @@ function App() {
   const restart = () => {
     const newWord = getRandom(siteConfig.words)
     setRandomWord(newWord)
-    setWord(newWord.split('').map(() => '_'))
+    setWord(genHiddenWord(newWord))
     setCount(0)
     setUsedLetters([])
   }
@@ -44,7 +35,6 @@ function App() {
   return (
     <div className="wrapper">
       <h1>{count < 7 ? word : randomWord}</h1>
-      <h2>Count is {count}</h2>
       <h3>{randomWord}</h3>
       <button
         className="btn refresh-btn"
