@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { IoRefresh } from 'react-icons/io5'
 import { getRandom, genHiddenWord, updateWord } from './utils'
 import { siteConfig } from './config'
+import { Canvas } from './Canvas'
 import './App.css'
 
 function App() {
@@ -34,8 +35,8 @@ function App() {
 
   return (
     <div className="wrapper">
+      <Canvas count={count} />
       <h1>{count < 7 ? word : randomWord}</h1>
-      <h3>{randomWord}</h3>
       <button
         className="btn refresh-btn"
         type="button"
