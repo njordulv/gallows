@@ -37,7 +37,7 @@ const itemVariants = {
   },
 }
 
-export const Menu = () => {
+export const Categories = () => {
   const [open, setOpen] = useState(false)
 
   return (

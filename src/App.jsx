@@ -3,7 +3,7 @@ import { IoRefresh } from 'react-icons/io5'
 import { getRandom, genHiddenWord, updateWord } from './utils'
 import { siteConfig } from './config'
 import { Canvas } from './Canvas'
-import { Menu } from './Menu'
+import { Categories } from './Categories'
 
 function App() {
   const random = getRandom(siteConfig.categories.animals)
@@ -91,7 +91,7 @@ function App() {
           <span>Defeats:</span>
           <span className="danger">{defeats}</span>
         </div>
-        <Menu />
+        <Categories />
       </div>
       <div className="buttons">
         {siteConfig.alphabet.map((letter, index) => (
