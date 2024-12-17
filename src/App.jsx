@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { IoRefresh } from 'react-icons/io5'
 import { getRandom, genHiddenWord, updateWord } from './utils'
 import { siteConfig } from './config'
@@ -13,6 +13,16 @@ function App() {
   const [usedLetters, setUsedLetters] = useState([])
   const [count, setCount] = useState(0)
 
+  const [defeats, setDefeats] = useState(() => {
+    const defeat = localStorage.getItem('defeats')
+    return defeat ? JSON.parse(defeat) : 0
+  })
+
+  const [wins, setWins] = useState(() => {
+    const win = localStorage.getItem('wins')
+    return win ? JSON.parse(win) : 0
+  })
+
   const getLetter = (letter) => {
     if (usedLetters.includes(letter)) return
 
@@ -25,7 +35,27 @@ function App() {
     setWord(updatedWord)
   }
 
-  const restart = () => {
+  useEffect(() => {
+    if (count === attempts) {
+      setDefeats((prev) => prev + 1)
+    }
+  }, [count, attempts])
+
+  useEffect(() => {
+    if (!word.includes('_')) {
+      setWins((prev) => prev + 1)
+    }
+  }, [word])
+
+  useEffect(() => {
+    localStorage.setItem('defeats', JSON.stringify(defeats))
+  }, [defeats])
+
+  useEffect(() => {
+    localStorage.setItem('wins', JSON.stringify(wins))
+  }, [wins])
+
+  const refresh = () => {
     const newWord = getRandom(siteConfig.categories.animals)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
@@ -41,15 +71,24 @@ function App() {
         <button
           className="btn refresh-btn"
           type="button"
-          title="Reset"
-          onClick={() => restart()}
+          title="Refresh"
+          onClick={() => refresh()}
         >
           <IoRefresh size="23" />
         </button>
-        <div className="attempts">
-          <span>{count}</span>
-          <span>/</span>
-          <span>{attempts}</span>
+        <div className="stats">
+          <span>Tries:</span>
+          <span className="white">
+            {count}/{attempts}
+          </span>
+        </div>
+        <div className="stats">
+          <span>Wins:</span>
+          <span className="success">{wins}</span>
+        </div>
+        <div className="stats">
+          <span>Defeats:</span>
+          <span className="danger">{defeats}</span>
         </div>
       </div>
       <div className="buttons">

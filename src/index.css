@@ -72,6 +72,7 @@ button {
   color: whitesmoke;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 button:hover {
   background-color: black;
@@ -109,22 +110,33 @@ button:disabled {
   top: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: end;
+  align-items: end;
   gap: 10px;
 }
 
-.attempts {
+.stats {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 2px;
+  background-color: #363636;
+  color: whitesmoke;
+  font-size: 14px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  min-width: 62px;
 }
 
-.canvas {
-  width: 288px;
-  height: 400px;
-  position: relative;
+.danger {
+  color: coral;
+}
+
+.success {
+  color: mediumaquamarine;
+}
+
+.white {
+  color: white;
 }
 
 @media screen and (max-width: 480px) {
