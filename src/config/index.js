@@ -186,7 +186,7 @@ export const siteConfig = {
       'Sofia',
       'Baghdad',
     ],
-    musicBands: [
+    bands: [
       'The Beatles',
       'Queen',
       'Led Zeppelin',
