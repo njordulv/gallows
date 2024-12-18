@@ -4,6 +4,7 @@ import { getRandom, genHiddenWord, updateWord } from './utils'
 import { siteConfig } from './config'
 import { Canvas } from './Canvas'
 import { Categories } from './Categories'
+import { AlphabetBtn } from './AlphabetBtn'
 
 function App() {
   const random = getRandom(siteConfig.categories.animals)
@@ -26,13 +27,9 @@ function App() {
 
   const getLetter = (letter) => {
     if (usedLetters.includes(letter)) return
-
     setUsedLetters((prev) => [...prev, letter])
-
     const { updatedWord, guess } = updateWord(randomWord, word, letter)
-
     if (!guess && count < attempts) setCount((count) => count + 1)
-
     setWord(updatedWord)
   }
 
@@ -95,13 +92,12 @@ function App() {
       </div>
       <div className="buttons">
         {siteConfig.alphabet.map((letter, index) => (
-          <button
+          <AlphabetBtn
             key={index}
+            letter={letter}
             disabled={usedLetters.includes(letter)}
             onClick={() => getLetter(letter)}
-          >
-            {letter}
-          </button>
+          />
         ))}
       </div>
     </div>
