@@ -1,6 +1,5 @@
 import { motion } from 'motion/react'
 
-// eslint-disable-next-line react/prop-types
 export const Canvas = ({ count, color = '#363636' }) => {
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
