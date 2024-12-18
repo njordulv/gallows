@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { IoRefresh } from 'react-icons/io5'
-import { getRandom, genHiddenWord, updateWord } from './utils'
+import { getRandom, genHiddenWord, updateWord, triesCount } from './utils'
 import { siteConfig } from './config'
 import { Canvas } from './Canvas'
 import { Categories } from './Categories'
@@ -69,19 +69,9 @@ function App() {
       <Canvas count={count} />
       <h1>{count < attempts ? word : randomWord}</h1>
       <div className="userboard">
-        <button
-          className="btn refresh-btn"
-          type="button"
-          title="Refresh"
-          onClick={() => refresh()}
-        >
-          <IoRefresh size={23} />
-        </button>
         <div className="stats">
           <span>Tries:</span>
-          <span className="white">
-            {count}/{attempts}
-          </span>
+          <span className="white">{triesCount(count, attempts)}</span>
         </div>
         <div className="stats">
           <span>Wins:</span>
@@ -91,6 +81,14 @@ function App() {
           <span>Defeats:</span>
           <span className="danger">{defeats}</span>
         </div>
+        <button
+          className="btn refresh-btn"
+          type="button"
+          title="Refresh"
+          onClick={() => refresh()}
+        >
+          <IoRefresh size={23} />
+        </button>
         <Categories
           setCount={setCount}
           setUsedLetters={setUsedLetters}

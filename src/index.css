@@ -46,7 +46,7 @@ line {
 }
 
 h1 {
-  font-size: 3.5em;
+  font-size: 3.3em;
   line-height: 1em;
   letter-spacing: 0.2em;
 }
@@ -97,16 +97,16 @@ button:disabled {
 }
 
 .menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   color: whitesmoke;
-  padding: 8px;
-  font-size: 15px;
+  padding: 6px;
+  font-size: 14px;
   text-align: right;
   display: flex;
   flex-direction: column;
   gap: 1px;
-}
-
-.menu ul {
   background-color: #363636;
   color: whitesmoke;
   border-radius: 8px;
@@ -115,18 +115,13 @@ button:disabled {
 }
 
 .menu ul li {
-  padding: 0 8px;
+  padding: 0 6px;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .menu ul li:hover {
   background-color: #000;
-}
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .wrapper {
@@ -164,9 +159,9 @@ ul {
   background-color: #363636;
   color: whitesmoke;
   font-size: 14px;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 5px;
-  min-width: 64px;
+  min-width: 70px;
 }
 
 .danger {
@@ -183,7 +178,7 @@ ul {
 
 @media screen and (max-width: 480px) {
   h1 {
-    font-size: 2.4em;
+    font-size: 2.2em;
     letter-spacing: 0.1em;
   }
 

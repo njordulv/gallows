@@ -15,7 +15,7 @@ export const Categories = ({
 
   return (
     <motion.div className="menu" animate={open ? 'open' : 'closed'}>
-      <button onClick={() => setOpen((pv) => !pv)}>
+      <button title="Categories" onClick={() => setOpen((pv) => !pv)}>
         <IoMenuOutline size={23} />
       </button>
       <motion.ul

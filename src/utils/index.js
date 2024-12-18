@@ -20,3 +20,5 @@ export const updateWord = (randomWord, currentWord, letter) => {
 
 export const capitalizeWord = (word) =>
   word.charAt(0).toUpperCase() + word.slice(1)
+
+export const triesCount = (count, ammount) => ammount - count
