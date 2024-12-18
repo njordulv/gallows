@@ -56,7 +56,8 @@ function App() {
   }, [wins])
 
   const refresh = () => {
-    const newWord = getRandom(category)
+    const words = siteConfig.categories[category || 'animals']
+    const newWord = getRandom(words)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
     setCount(0)
@@ -66,7 +67,6 @@ function App() {
   return (
     <div className="wrapper">
       <Canvas count={count} />
-      <p>{randomWord}</p>
       <h1>{count < attempts ? word : randomWord}</h1>
       <div className="userboard">
         <button
@@ -91,7 +91,14 @@ function App() {
           <span>Defeats:</span>
           <span className="danger">{defeats}</span>
         </div>
-        <Categories />
+        <Categories
+          setCount={setCount}
+          setUsedLetters={setUsedLetters}
+          getRandom={getRandom}
+          setRandomWord={setRandomWord}
+          setWord={setWord}
+          refresh={() => refresh()}
+        />
       </div>
       <div className="buttons">
         {siteConfig.alphabet.map((letter, index) => (

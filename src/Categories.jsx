@@ -4,7 +4,13 @@ import { IoMenuOutline } from 'react-icons/io5'
 import { siteConfig } from './config'
 import { Category } from './Category'
 
-export const Categories = () => {
+export const Categories = ({
+  setCount,
+  setUsedLetters,
+  getRandom,
+  setRandomWord,
+  setWord,
+}) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -23,6 +29,11 @@ export const Categories = () => {
             key={category}
             name={category}
             onClick={() => setOpen(false)}
+            setCount={setCount}
+            setUsedLetters={setUsedLetters}
+            getRandom={getRandom}
+            setRandomWord={setRandomWord}
+            setWord={setWord}
           />
         ))}
       </motion.ul>
