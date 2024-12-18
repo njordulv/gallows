@@ -2,6 +2,35 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { IoMenuOutline } from 'react-icons/io5'
 import { siteConfig } from './config'
+import { capitalizeWord } from './utils'
+
+export const Categories = () => {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <motion.div className="menu" animate={open ? 'open' : 'closed'}>
+      <button onClick={() => setOpen((pv) => !pv)}>
+        <IoMenuOutline size={23} />
+      </button>
+      <motion.ul
+        initial={wrapper.closed}
+        variants={wrapper}
+        className={`list ${open ? 'open' : 'closed'}`}
+        style={{ originY: 'top' }}
+      >
+        {Object.keys(siteConfig.categories).map((category) => (
+          <motion.li
+            key={category}
+            variants={item}
+            onClick={() => setOpen(false)}
+          >
+            {capitalizeWord(category)}
+          </motion.li>
+        ))}
+      </motion.ul>
+    </motion.div>
+  )
+}
 
 const wrapper = {
   open: {
@@ -35,32 +64,4 @@ const item = {
       when: 'afterChildren',
     },
   },
-}
-
-export const Categories = () => {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <motion.div className="menu" animate={open ? 'open' : 'closed'}>
-      <button onClick={() => setOpen((pv) => !pv)}>
-        <IoMenuOutline size={23} />
-      </button>
-      <motion.ul
-        initial={wrapper.closed}
-        variants={wrapper}
-        className={`list ${open ? 'open' : 'closed'}`}
-        style={{ originY: 'top' }}
-      >
-        {Object.keys(siteConfig.categories).map((category) => (
-          <motion.li
-            key={category}
-            variants={item}
-            onClick={() => setOpen(false)}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </motion.li>
-        ))}
-      </motion.ul>
-    </motion.div>
-  )
 }
