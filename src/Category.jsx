@@ -1,9 +1,17 @@
 import { motion } from 'motion/react'
 import { capitalizeWord } from './utils'
+import { useStore } from './store'
 
 export const Category = ({ name, onClick }) => {
+  const { setCategory } = useStore()
+
+  const handleClick = () => {
+    setCategory(name)
+    onClick()
+  }
+
   return (
-    <motion.li variants={item} onClick={onClick}>
+    <motion.li variants={item} onClick={handleClick}>
       {capitalizeWord(name)}
     </motion.li>
   )

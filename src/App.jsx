@@ -5,9 +5,11 @@ import { siteConfig } from './config'
 import { Canvas } from './Canvas'
 import { Categories } from './Categories'
 import { AlphabetBtn } from './AlphabetBtn'
+import { useStore } from './store'
 
 function App() {
-  const random = getRandom(siteConfig.categories.animals)
+  const category = useStore((state) => state.selectCategory)
+  const random = getRandom(siteConfig.categories[category || 'animals'])
   const attempts = 7
   const [randomWord, setRandomWord] = useState(random)
   const hiddenWord = genHiddenWord(randomWord)
@@ -54,7 +56,7 @@ function App() {
   }, [wins])
 
   const refresh = () => {
-    const newWord = getRandom(siteConfig.categories.animals)
+    const newWord = getRandom(category)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
     setCount(0)
@@ -64,6 +66,7 @@ function App() {
   return (
     <div className="wrapper">
       <Canvas count={count} />
+      <p>{randomWord}</p>
       <h1>{count < attempts ? word : randomWord}</h1>
       <div className="userboard">
         <button
