@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { IoMenuOutline } from 'react-icons/io5'
 import { siteConfig } from './config'
-import { capitalizeWord } from './utils'
+import { Category } from './Category'
 
 export const Categories = () => {
   const [open, setOpen] = useState(false)
@@ -19,13 +19,11 @@ export const Categories = () => {
         style={{ originY: 'top' }}
       >
         {Object.keys(siteConfig.categories).map((category) => (
-          <motion.li
+          <Category
             key={category}
-            variants={item}
+            name={category}
             onClick={() => setOpen(false)}
-          >
-            {capitalizeWord(category)}
-          </motion.li>
+          />
         ))}
       </motion.ul>
     </motion.div>
@@ -45,23 +43,6 @@ const wrapper = {
     transition: {
       when: 'afterChildren',
       staggerChildren: 0.1,
-    },
-  },
-}
-
-const item = {
-  open: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      when: 'beforeChildren',
-    },
-  },
-  closed: {
-    opacity: 0,
-    y: -15,
-    transition: {
-      when: 'afterChildren',
     },
   },
 }
