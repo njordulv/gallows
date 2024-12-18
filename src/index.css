@@ -106,7 +106,7 @@ button:disabled {
   text-align: right;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
   background-color: #363636;
   color: whitesmoke;
   border-radius: 8px;
