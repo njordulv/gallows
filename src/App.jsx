@@ -27,7 +27,6 @@ function App() {
   const getLetter = (letter) => {
     if (usedLetters.includes(letter)) return
     addUsedLetter(letter)
-
     const { updatedWord, guess } = updateWord(randomWord, word, letter)
 
     if (!guess && count < attempts) {
@@ -43,10 +42,17 @@ function App() {
   }, [count, attempts, setLooses])
 
   useEffect(() => {
-    if (!word.includes('_')) {
+    if (
+      word
+        .split('')
+        .every(
+          (char, index) =>
+            char === randomWord[index] || randomWord[index] === ' '
+        )
+    ) {
       setWins((prev) => prev + 1)
     }
-  }, [word, setWins])
+  }, [word, randomWord, setWins])
 
   return (
     <div className="wrapper">
@@ -66,7 +72,7 @@ function App() {
           setWord={setWord}
         />
       </div>
-      <div className="buttons">
+      <div className="alphabet">
         {siteConfig.alphabet.map((letter, index) => (
           <AlphabetBtn
             key={index}

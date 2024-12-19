@@ -132,7 +132,7 @@ button:disabled {
   gap: 3rem;
 }
 
-.buttons {
+.alphabet {
   max-width: 500px;
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +185,7 @@ button:disabled {
   .wrapper {
     gap: 2em;
   }
-  .buttons {
+  .alphabet {
     gap: 0.6em;
   }
 }
