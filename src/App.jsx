@@ -78,7 +78,7 @@ function App() {
           <span className="success">{wins}</span>
         </div>
         <div className="stats">
-          <span>Defeats:</span>
+          <span>Looses:</span>
           <span className="danger">{defeats}</span>
         </div>
         <button

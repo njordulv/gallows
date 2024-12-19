@@ -10,12 +10,15 @@ Built with React & Vite.
 - Canvas-based animations for drawing the hangman.
 - Restart button to reset the game and start over.
 - Tracks used letters and disables them after selection.
+- Game stats that displays tryings, wins and looses.
+- Menu button that allows to select a particular category.
 
 ## Technologies
 
 - **Frontend library:** React ^18
 - **Languages:** JavaScript
 - **Animation library:** Motion
+- **Store library:** Zustand
 - **Build tool:** Vite
 
 ## Installation

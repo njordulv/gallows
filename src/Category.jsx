@@ -43,7 +43,7 @@ const item = {
   },
   closed: {
     opacity: 0,
-    y: -15,
+    y: -9,
     transition: {
       when: 'afterChildren',
     },
