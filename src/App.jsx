@@ -52,6 +52,7 @@ function App() {
     <div className="wrapper">
       <Canvas count={count} />
       <h1>{count < attempts ? word : randomWord}</h1>
+      <p>{randomWord}</p>
       <div className="userboard">
         <Stats />
         <RefreshBtn

@@ -1,5 +1,11 @@
 import { create } from 'zustand'
 import { siteConfig } from '@/config'
+import {
+  uniqueArray,
+  isValidCategory,
+  getLocalStorage,
+  setLocalStorage,
+} from '@/utils'
 
 export const useStore = create((set) => ({
   attempts: 7,
@@ -8,28 +14,29 @@ export const useStore = create((set) => ({
   theme: siteConfig.categories['animals'],
   category: '',
   setCategory: (name) =>
-    set({ category: name, theme: siteConfig.categories[name || 'animals'] }),
+    set({
+      category: isValidCategory(siteConfig, name) ? name : '',
+      theme: siteConfig.categories[name || 'animals'],
+    }),
   count: 0,
   setCount: () => set((state) => ({ count: state.count + 1 })),
   usedLetters: [],
   addUsedLetter: (letter) =>
     set((state) => ({
-      usedLetters: state.usedLetters.includes(letter)
-        ? state.usedLetters
-        : [...state.usedLetters, letter],
+      usedLetters: uniqueArray(state.usedLetters, letter),
     })),
-  wins: JSON.parse(localStorage.getItem('wins')) || 0,
-  looses: JSON.parse(localStorage.getItem('looses')) || 0,
+  wins: getLocalStorage('wins', 0),
+  looses: getLocalStorage('looses', 0),
   setWins: () =>
     set((state) => {
       const updatedWins = state.wins + 1
-      localStorage.setItem('wins', JSON.stringify(updatedWins))
+      setLocalStorage('wins', updatedWins)
       return { wins: updatedWins }
     }),
   setLooses: () =>
     set((state) => {
       const updatedLooses = state.looses + 1
-      localStorage.setItem('looses', JSON.stringify(updatedLooses))
+      setLocalStorage('looses', updatedLooses)
       return { looses: updatedLooses }
     }),
   reset: () =>

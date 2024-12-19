@@ -22,3 +22,18 @@ export const capitalizeWord = (word) =>
   word.charAt(0).toUpperCase() + word.slice(1)
 
 export const triesCount = (count, ammount) => ammount - count
+
+export const uniqueArray = (array, value) =>
+  array.includes(value) ? array : [...array, value]
+
+export const isValidCategory = (config, name) =>
+  Object.keys(config.categories).includes(name)
+
+export const getLocalStorage = (key, defaultValue) => {
+  const value = localStorage.getItem(key)
+  return value ? JSON.parse(value) : defaultValue
+}
+
+export const setLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value))
+}
