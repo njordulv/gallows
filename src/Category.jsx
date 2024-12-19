@@ -6,24 +6,21 @@ import { siteConfig } from './config'
 
 export const Category = ({
   name,
-  onClick,
-  setCount,
-  setUsedLetters,
+  setOpen,
   getRandom,
   setRandomWord,
   setWord,
 }) => {
-  const { setCategory } = useStore()
+  const { setCategory, reset } = useStore()
 
   const handleClick = () => {
     setCategory(name)
-    onClick()
+    setOpen()
     const words = siteConfig.categories[name]
     const newWord = getRandom(words)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
-    setCount(0)
-    setUsedLetters([])
+    reset()
   }
 
   return (

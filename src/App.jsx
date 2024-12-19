@@ -8,18 +8,18 @@ import { AlphabetBtn } from './AlphabetBtn'
 import { useStore } from './store'
 
 function App() {
-  const category = useStore((state) => state.selectCategory)
-  const random = getRandom(siteConfig.categories[category || 'animals'])
+  const { count, setCount, category, usedLetters, addUsedLetter, reset } =
+    useStore()
+  const theme = siteConfig.categories[category || 'animals']
+  const random = getRandom(theme)
   const attempts = 7
   const [randomWord, setRandomWord] = useState(random)
   const hiddenWord = genHiddenWord(randomWord)
   const [word, setWord] = useState(hiddenWord)
-  const [usedLetters, setUsedLetters] = useState([])
-  const [count, setCount] = useState(0)
 
-  const [defeats, setDefeats] = useState(() => {
-    const defeat = localStorage.getItem('defeats')
-    return defeat ? JSON.parse(defeat) : 0
+  const [looses, setLooses] = useState(() => {
+    const loose = localStorage.getItem('looses')
+    return loose ? JSON.parse(loose) : 0
   })
 
   const [wins, setWins] = useState(() => {
@@ -29,15 +29,19 @@ function App() {
 
   const getLetter = (letter) => {
     if (usedLetters.includes(letter)) return
-    setUsedLetters((prev) => [...prev, letter])
+    addUsedLetter(letter)
+
     const { updatedWord, guess } = updateWord(randomWord, word, letter)
-    if (!guess && count < attempts) setCount((count) => count + 1)
+
+    if (!guess && count < attempts) {
+      setCount()
+    }
     setWord(updatedWord)
   }
 
   useEffect(() => {
     if (count === attempts) {
-      setDefeats((prev) => prev + 1)
+      setLooses((prev) => prev + 1)
     }
   }, [count, attempts])
 
@@ -48,20 +52,19 @@ function App() {
   }, [word])
 
   useEffect(() => {
-    localStorage.setItem('defeats', JSON.stringify(defeats))
-  }, [defeats])
+    localStorage.setItem('looses', JSON.stringify(looses))
+  }, [looses])
 
   useEffect(() => {
     localStorage.setItem('wins', JSON.stringify(wins))
   }, [wins])
 
   const refresh = () => {
-    const words = siteConfig.categories[category || 'animals']
+    const words = theme
     const newWord = getRandom(words)
     setRandomWord(newWord)
     setWord(genHiddenWord(newWord))
-    setCount(0)
-    setUsedLetters([])
+    reset()
   }
 
   return (
@@ -79,7 +82,7 @@ function App() {
         </div>
         <div className="stats">
           <span>Looses:</span>
-          <span className="danger">{defeats}</span>
+          <span className="danger">{looses}</span>
         </div>
         <button
           className="btn refresh-btn"
@@ -90,12 +93,9 @@ function App() {
           <IoRefresh size={23} />
         </button>
         <Categories
-          setCount={setCount}
-          setUsedLetters={setUsedLetters}
           getRandom={getRandom}
           setRandomWord={setRandomWord}
           setWord={setWord}
-          refresh={() => refresh()}
         />
       </div>
       <div className="buttons">

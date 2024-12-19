@@ -1,21 +1,15 @@
-import { useState } from 'react'
 import { motion } from 'motion/react'
 import { IoMenuOutline } from 'react-icons/io5'
 import { siteConfig } from './config'
 import { Category } from './Category'
+import { useStore } from './store'
 
-export const Categories = ({
-  setCount,
-  setUsedLetters,
-  getRandom,
-  setRandomWord,
-  setWord,
-}) => {
-  const [open, setOpen] = useState(false)
+export const Categories = ({ getRandom, setRandomWord, setWord }) => {
+  const { open, setOpen } = useStore()
 
   return (
     <motion.div className="menu" animate={open ? 'open' : 'closed'}>
-      <button title="Categories" onClick={() => setOpen((pv) => !pv)}>
+      <button title="Categories" onClick={setOpen}>
         <IoMenuOutline size={23} />
       </button>
       <motion.ul
@@ -28,9 +22,7 @@ export const Categories = ({
           <Category
             key={category}
             name={category}
-            onClick={() => setOpen(false)}
-            setCount={setCount}
-            setUsedLetters={setUsedLetters}
+            setOpen={setOpen}
             getRandom={getRandom}
             setRandomWord={setRandomWord}
             setWord={setWord}
