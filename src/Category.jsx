@@ -1,8 +1,8 @@
 import { motion } from 'motion/react'
-import { capitalizeWord } from './utils'
-import { useStore } from './store'
-import { genHiddenWord } from './utils'
-import { siteConfig } from './config'
+import { capitalizeWord } from '@/utils'
+import { useStore } from '@/store'
+import { genHiddenWord } from '@/utils'
+import { siteConfig } from '@/config'
 
 export const Category = ({
   name,

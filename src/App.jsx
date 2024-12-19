@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { IoRefresh } from 'react-icons/io5'
-import { getRandom, genHiddenWord, updateWord, triesCount } from './utils'
-import { siteConfig } from './config'
-import { Canvas } from './Canvas'
-import { Categories } from './Categories'
-import { AlphabetBtn } from './AlphabetBtn'
-import { useStore } from './store'
+import { getRandom, genHiddenWord, updateWord, triesCount } from '@/utils'
+import { siteConfig } from '@/config'
+import { Canvas } from '@/Canvas'
+import { Categories } from '@/Categories'
+import { AlphabetBtn } from '@/AlphabetBtn'
+import { useStore } from '@/store'
 
 function App() {
   const { count, setCount, category, usedLetters, addUsedLetter, reset } =

@@ -1,8 +1,8 @@
 import { motion } from 'motion/react'
 import { IoMenuOutline } from 'react-icons/io5'
-import { siteConfig } from './config'
-import { Category } from './Category'
-import { useStore } from './store'
+import { siteConfig } from '@/config'
+import { Category } from '@/Category'
+import { useStore } from '@/store'
 
 export const Categories = ({ getRandom, setRandomWord, setWord }) => {
   const { open, setOpen } = useStore()
