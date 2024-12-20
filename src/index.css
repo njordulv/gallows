@@ -23,7 +23,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: url(bg.jpg) 0 0 no-repeat;
+  background: url(/bg.jpg) 0 0 no-repeat;
   background-color: darkgrey;
   background-size: cover;
   background-blend-mode: overlay;
