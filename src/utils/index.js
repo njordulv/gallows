@@ -1,6 +1,6 @@
 export const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
-export const genHiddenWord = (word) =>
+export const generateHiddenWord = (word) =>
   word
     .split('')
     .map((char) => (char === ' ' ? ' ' : '_'))

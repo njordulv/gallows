@@ -5,6 +5,9 @@ import {
   isValidCategory,
   getLocalStorage,
   setLocalStorage,
+  updateWord,
+  getRandom,
+  generateHiddenWord,
 } from '@/utils'
 
 export const useStore = create((set) => ({
@@ -20,19 +23,51 @@ export const useStore = create((set) => ({
     }),
   count: 0,
   setCount: () => set((state) => ({ count: state.count + 1 })),
+  word: '',
+  randomWord: '',
+  setRandomWord: (word) =>
+    set({
+      randomWord: word,
+      word: word
+        .split('')
+        .map((char) => (char === ' ' ? ' ' : '_'))
+        .join(''),
+    }),
+  handleLetterClick: (letter) =>
+    set((state) => {
+      if (state.usedLetters.includes(letter)) return state
+
+      const updatedUsedLetters = uniqueArray(state.usedLetters, letter)
+      const { updatedWord, guess } = updateWord(
+        state.randomWord,
+        state.word,
+        letter
+      )
+
+      const newState = {
+        usedLetters: updatedUsedLetters,
+        word: updatedWord,
+      }
+
+      if (!guess && state.count < state.attempts) {
+        newState.count = state.count + 1
+      }
+
+      return newState
+    }),
   usedLetters: [],
   addUsedLetter: (letter) =>
     set((state) => ({
       usedLetters: uniqueArray(state.usedLetters, letter),
     })),
   wins: getLocalStorage('wins', 0),
-  looses: getLocalStorage('looses', 0),
   setWins: () =>
     set((state) => {
       const updatedWins = state.wins + 1
       setLocalStorage('wins', updatedWins)
       return { wins: updatedWins }
     }),
+  looses: getLocalStorage('looses', 0),
   setLooses: () =>
     set((state) => {
       const updatedLooses = state.looses + 1
@@ -40,9 +75,14 @@ export const useStore = create((set) => ({
       return { looses: updatedLooses }
     }),
   reset: () =>
-    set({
-      open: false,
-      count: 0,
-      usedLetters: [],
+    set((state) => {
+      const newWord = getRandom(state.theme)
+      return {
+        randomWord: newWord,
+        word: generateHiddenWord(newWord),
+        open: false,
+        count: 0,
+        usedLetters: [],
+      }
     }),
 }))

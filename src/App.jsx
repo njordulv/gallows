@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getRandom, genHiddenWord, updateWord } from '@/utils'
+import { getRandom } from '@/utils'
 import { siteConfig } from '@/config'
 import { useStore } from '@/store'
 import { Canvas } from '@/components/Canvas'
@@ -12,38 +12,28 @@ function App() {
   const {
     theme,
     count,
-    setCount,
-    usedLetters,
-    addUsedLetter,
     category,
     attempts,
-    setLooses,
+    word,
+    randomWord,
+    setRandomWord,
     setWins,
+    setLooses,
   } = useStore()
-  const random = getRandom(theme)
-  const [randomWord, setRandomWord] = useState(random)
-  const hiddenWord = genHiddenWord(randomWord)
-  const [word, setWord] = useState(hiddenWord)
-
-  const getLetter = (letter) => {
-    if (usedLetters.includes(letter)) return
-    addUsedLetter(letter)
-    const { updatedWord, guess } = updateWord(randomWord, word, letter)
-
-    if (!guess && count < attempts) {
-      setCount()
-    }
-    setWord(updatedWord)
-  }
+  const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
-    if (count === attempts) {
-      setLooses((prev) => prev + 1)
-    }
-  }, [count, attempts, setLooses])
+    setRandomWord(getRandom(theme))
+  }, [theme, setRandomWord])
 
   useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true)
+      return
+    }
     if (
+      word &&
+      !word.includes('_') &&
       word
         .split('')
         .every(
@@ -51,9 +41,15 @@ function App() {
             char === randomWord[index] || randomWord[index] === ' '
         )
     ) {
-      setWins((prev) => prev + 1)
+      setWins()
     }
-  }, [word, randomWord, setWins])
+  }, [hasMounted, word, randomWord, setWins])
+
+  useEffect(() => {
+    if (count === attempts) {
+      setLooses()
+    }
+  }, [count, attempts, setLooses])
 
   return (
     <div className="wrapper">
@@ -66,25 +62,12 @@ function App() {
       </div>
       <div className="userboard">
         <Stats />
-        <RefreshBtn
-          getRandom={getRandom}
-          setRandomWord={setRandomWord}
-          setWord={setWord}
-        />
-        <Categories
-          getRandom={getRandom}
-          setRandomWord={setRandomWord}
-          setWord={setWord}
-        />
+        <RefreshBtn />
+        <Categories />
       </div>
       <div className="alphabet">
         {siteConfig.alphabet.map((letter, index) => (
-          <AlphabetBtn
-            key={index}
-            letter={letter}
-            disabled={usedLetters.includes(letter)}
-            onClick={() => getLetter(letter)}
-          />
+          <AlphabetBtn key={index} letter={letter} />
         ))}
       </div>
     </div>

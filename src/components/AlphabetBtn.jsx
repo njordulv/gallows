@@ -1,6 +1,13 @@
-export const AlphabetBtn = ({ letter, onClick, disabled }) => {
+import { useStore } from '@/store'
+
+export const AlphabetBtn = ({ letter }) => {
+  const { usedLetters, handleLetterClick } = useStore()
+
   return (
-    <button disabled={disabled} onClick={onClick}>
+    <button
+      disabled={usedLetters.includes(letter)}
+      onClick={() => handleLetterClick(letter)}
+    >
       {letter}
     </button>
   )

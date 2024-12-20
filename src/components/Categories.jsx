@@ -4,7 +4,7 @@ import { siteConfig } from '@/config'
 import { useStore } from '@/store'
 import { Category } from '@/components/Category'
 
-export const Categories = ({ getRandom, setRandomWord, setWord }) => {
+export const Categories = () => {
   const { open, setOpen } = useStore()
 
   return (
@@ -19,14 +19,7 @@ export const Categories = ({ getRandom, setRandomWord, setWord }) => {
         style={{ originY: 'top' }}
       >
         {Object.keys(siteConfig.categories).map((category) => (
-          <Category
-            key={category}
-            name={category}
-            setOpen={setOpen}
-            getRandom={getRandom}
-            setRandomWord={setRandomWord}
-            setWord={setWord}
-          />
+          <Category key={category} name={category} />
         ))}
       </motion.ul>
     </motion.div>

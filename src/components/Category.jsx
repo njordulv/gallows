@@ -1,24 +1,13 @@
 import { motion } from 'motion/react'
-import { capitalizeWord, genHiddenWord } from '@/utils'
+import { capitalizeWord } from '@/utils'
 import { useStore } from '@/store'
-import { siteConfig } from '@/config'
 
-export const Category = ({
-  name,
-  setOpen,
-  getRandom,
-  setRandomWord,
-  setWord,
-}) => {
-  const { setCategory, reset } = useStore()
+export const Category = ({ name }) => {
+  const { setOpen, setCategory, reset } = useStore()
 
   const handleClick = () => {
     setCategory(name)
     setOpen()
-    const words = siteConfig.categories[name]
-    const newWord = getRandom(words)
-    setRandomWord(newWord)
-    setWord(genHiddenWord(newWord))
     reset()
   }
 
