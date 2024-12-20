@@ -1,17 +1,21 @@
 # Gallows Game
 
-A classic word-guessing game where you try to uncover the hidden word before the stick figure is fully drawn.
-Built with React & Vite.
+A modern take on the classic word-guessing game! Guess the hidden word one letter at a time before the hangman is fully drawn.
+Built with React and Vite for a smooth and interactive user experience.
+
+## Link Demo
+
+Check out the live version here: [Gallows Game](https://njordulv-gallows.netlify.app).
 
 ## Features
 
-- Randomly selected words for each game session.
-- Intuitive user interface with buttons for guessing letters.
-- Canvas-based animations for drawing the hangman.
-- Restart button to reset the game and start over.
-- Tracks used letters and disables them after selection.
-- Game stats that displays tryings, wins and looses.
-- Menu button that allows to select a particular category.
+- **Random Word Selection:** A new word is randomly chosen from the selected category for each game session.
+- **Interactive Letter Guessing:** Intuitive interface with alphabet buttons to guess letters.
+- **Dynamic Hangman Animation:** Canvas-based animations visually represent the hangman as the game progresses.
+- **Restart Functionality:** A restart button resets the game and starts a new session.
+- **Smart Letter Tracking:** Used letters are tracked and automatically disabled to prevent repeated guesses.
+- **Comprehensive Game Stats:** Displays the number of attempts, wins, and losses in real-time.
+- **Category Selection Menu:** A menu button allows players to choose a specific word category.
 
 ## Technologies
 

@@ -9,8 +9,8 @@ export const Categories = () => {
 
   return (
     <motion.div className="menu" animate={open ? 'open' : 'closed'}>
-      <button title="Categories" onClick={setOpen}>
-        <IoMenuOutline size={23} />
+      <button title="Categories" onClick={setOpen} className="btn full-w">
+        <IoMenuOutline size={24} />
       </button>
       <motion.ul
         initial={wrapper.closed}

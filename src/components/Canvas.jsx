@@ -16,23 +16,23 @@ export const Canvas = ({ count, color = '#363636' }) => {
   return (
     <motion.svg
       width="288"
-      height="400"
-      viewBox="0 0 288 400"
+      height="388"
+      viewBox="0 0 288 388"
       initial="hidden"
       animate="visible"
     >
       <motion.line // stage
         x1="2"
-        y1="397"
+        y1="385"
         x2="286"
-        y2="397"
+        y2="385"
         stroke={color}
       />
       <motion.line // pole
         x1="200"
         y1="0"
         x2="200"
-        y2="397"
+        y2="385"
         stroke={color}
         strokeWidth={5}
       />

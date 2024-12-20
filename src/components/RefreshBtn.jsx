@@ -6,7 +6,7 @@ export const RefreshBtn = () => {
 
   return (
     <button
-      className="btn refresh-btn"
+      className="btn full-w"
       type="button"
       title="Refresh"
       onClick={reset}

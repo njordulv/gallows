@@ -131,10 +131,23 @@ button:disabled {
 }
 
 .theme__name {
-  background-color: #363636;
+  position: relative;
   color: white;
-  padding: 2px 8px;
   font-size: 18px;
+  padding: 2px 8px;
+}
+
+.theme__name:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  transform: skewX(-10deg);
+  border-radius: 5px;
+  background-color: #363636;
+  z-index: -1;
 }
 
 .wrapper {
@@ -189,6 +202,10 @@ button:disabled {
   color: white;
 }
 
+.full-w {
+  width: 100%;
+}
+
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 2.2em;
@@ -204,5 +221,6 @@ button:disabled {
 
   button {
     width: 40px;
+    height: 38px;
   }
 }

@@ -19,6 +19,7 @@ function App() {
     setRandomWord,
     setWins,
     setLooses,
+    reset,
   } = useStore()
   const [hasMounted, setHasMounted] = useState(false)
 
@@ -42,14 +43,20 @@ function App() {
         )
     ) {
       setWins()
+      setTimeout(() => {
+        reset()
+      }, 2000)
     }
-  }, [hasMounted, word, randomWord, setWins])
+  }, [hasMounted, word, randomWord, setWins, reset])
 
   useEffect(() => {
     if (count === attempts) {
       setLooses()
+      setTimeout(() => {
+        reset()
+      }, 2000)
     }
-  }, [count, attempts, setLooses])
+  }, [count, attempts, setLooses, reset])
 
   return (
     <div className="wrapper">
