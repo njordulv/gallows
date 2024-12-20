@@ -15,6 +15,7 @@ function App() {
     setCount,
     usedLetters,
     addUsedLetter,
+    category,
     attempts,
     setLooses,
     setWins,
@@ -57,8 +58,12 @@ function App() {
   return (
     <div className="wrapper">
       <Canvas count={count} />
-      <h1>{count < attempts ? word : randomWord}</h1>
-      <p>{randomWord}</p>
+      <div className="heading">
+        <div className="theme">
+          Theme: <span className="theme__name">{category || 'animals'}</span>
+        </div>
+        <h1>{count < attempts ? word : randomWord}</h1>
+      </div>
       <div className="userboard">
         <Stats />
         <RefreshBtn

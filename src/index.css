@@ -124,6 +124,19 @@ button:disabled {
   background-color: #000;
 }
 
+.theme {
+  text-transform: capitalize;
+  margin-bottom: 1em;
+  font-size: 20px;
+}
+
+.theme__name {
+  background-color: #363636;
+  color: white;
+  padding: 2px 8px;
+  font-size: 18px;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -187,5 +200,9 @@ button:disabled {
   }
   .alphabet {
     gap: 0.6em;
+  }
+
+  button {
+    width: 40px;
   }
 }
